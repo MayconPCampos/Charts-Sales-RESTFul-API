@@ -1,1 +1,1 @@
-# Charts-Sale-RESTFul-API
+# Sales-Charts-RESTFul-API

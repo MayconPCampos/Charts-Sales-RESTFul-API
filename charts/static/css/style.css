@@ -1,0 +1,29 @@
+.charts {
+    margin-left: 5%;
+    margin-right: 5%;
+    padding: 1%;
+    background-color: rgb(230, 230, 230);
+}
+
+.canvas {
+    background-color: rgb(255, 255, 255);
+    border-radius: 8px;
+}
+
+body {
+    background-color: rgb(255, 255, 255);
+    color: black;
+}
+
+.info {
+    background-color: rgb(255, 255, 255);
+    padding: 5%;
+    margin-bottom: 2%;
+    margin-top: 2%;
+    border-radius: 8px;
+    
+}
+
+.font-info {
+    font-size: 1.5vw;
+}

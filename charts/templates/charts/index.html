@@ -1,0 +1,138 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sales Charts API</title>
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <!-- Chart.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
+    <!-- Meu css -->
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    <div class="container-fluid p-0">
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <a href="" class="navbar-brand">Charts Sales API</a>
+        </nav>
+        <h5 class="text-center pt-2">Usuário: {{ user_account.username }}</h5>
+        <h5 class="text-center pb-2">id: {{ user_account.id }}</h5>
+        <div class="row charts">
+            <div class="col-6">
+               
+                <!-- Gráfico de vendas por produto -->
+                <canvas class="canvas py-1" id="pie" style="width:100%;max-width:100%"></canvas>
+                <script>
+                    var barColors = [
+                    "#FF3C33",
+                    "#0017A6",
+                    "#00C0BA",
+                    "#E0D70E",
+                    "#1e7145"
+                    ];
+
+                    new Chart("pie", {
+                    type: "pie",
+                    data: {
+                        labels: {{ products | safe }},
+                        datasets: [{
+                        backgroundColor: barColors,
+                        data: {{ product_values | safe }}
+                        }]
+                    },
+                    options: {
+                        title: {
+                        display: true,
+                        text: "Valores por vendas por produtos"
+                        }
+                    }
+                    });
+                </script>
+            </div>
+
+            <!-- Soma de valores e unidades vendidas -->
+            <div class="col-6">
+                <div class="info text-center">
+                    <h5 class="font-info">Valor total das vendas</h5>
+                    <h1 class="font-info">{{ total_price_values }}</h1>
+                </div>
+                <div class="info text-center">
+                    <h5 class="font-info">Total de unidades vendidas</h5>
+                    <h1 class="font-info">{{ number_of_sales }}</h1>
+                </div>
+            </div>
+        </div>
+        <div class="row charts pb-5 mb-5">
+            
+            <!--  gráfico de venda por grupo de clientes  -->
+            <div class="col-6">
+                <canvas class="canvas" id="product" style="width:100%;max-width:100%"></canvas>
+                <script>
+                    var barColors = [
+                    "#FF5733",
+                    "#33B2FF",
+                    "#71FF33"
+                    ];
+                    new Chart("product", {
+                    type: "bar",
+                    data: {
+                        labels: {{ clients | safe }},
+                        datasets: [
+                            {
+                                backgroundColor: barColors,
+                                data: {{ client_values | safe }}
+                            },
+                        ]
+                    },
+                    options: {
+                        legend: {display: false},
+                        title: {
+                        display: true,
+                        text: "Valores de vendas por tipos de clientes"
+                        },
+                        scales: {
+                            yAxes: [{
+                                ticks: {
+                                    beginAtZero: true,
+                                    callback: function(value, index, values) {
+                                        return value;
+                                    }
+                                }
+                            }]
+                        }
+                    }
+                    });
+                </script>
+            </div>
+            
+             <!-- Gráfico semanal -->
+             <div class="col-6">
+                <canvas class="canvas" id="week" style="width:100%;max-width:100%"></canvas>
+                <script>
+                    new Chart("week", {
+                        type: "line",
+                            data: {
+                                labels: {{ dates | safe }},
+                                datasets: [{
+                                    data: {{ week_prices | safe }},
+                                    borderColor: "#0E31E0",
+                                    fill: false
+                                },]
+                            },
+                            options: {
+                                legend: {display: false},
+                                title: {
+                                    display: true,
+                                    text: "Vendas nos últimos 7 dias"
+                                }
+                            }
+                    });
+                </script>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

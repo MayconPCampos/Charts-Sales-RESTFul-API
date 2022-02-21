@@ -1,6 +1,7 @@
 # Sales-Charts-RESTFul-API
 
-Primeiro protótipo da API de criação de dashboards com gráficos, informações e análise de dados para 
+### Primeiro protótipo da API  
+Com arquitetura REST utilizando chart.js essa API gera mini dashboards com gráficos e informações para
 ajudar na gestão e controle de fluxo de vendas, transações e resultados atráves de envio de informações no formato `JSON`.
 
 Contribuições e parcerias serão muito bem vindas! :blush:

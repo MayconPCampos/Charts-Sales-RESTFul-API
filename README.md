@@ -5,6 +5,6 @@ ajudar na gestão e controle de fluxo de vendas, transações e resultados atrá
 
 Contribuições e parcerias serão muito bem vindas! :blush:
 
-Documentação em construção.
+Documentação em breve.
 
 <img src="https://github.com/MayconPCampos/Django-Sales-Charts-RESTFul-API/blob/main/Chart%20dashboard.jpg?raw=true"/>
